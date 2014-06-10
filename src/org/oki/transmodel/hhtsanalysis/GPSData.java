@@ -58,17 +58,19 @@ public class GPSData implements Serializable{
 	public int cluster500;
 	
 	// Trip End Computation Items
-	boolean moving; //initialized to true
-	private int tripID; //WARNING: Making this public can screw up exporting to database formats!
+	public boolean moving; //initialized to true
+	public boolean isStop; //initialized to false
+	public int newTripID; 
 	public int stopID;
-	private int speedTE;
-	private int clusterTE;
+	public int speedTE;
+	public int clusterTE;
 	
 	
 	GPSData(){
 		moving=true;
 		speedTE=0;
 		clusterTE=0;
+		isStop=false;
 	}
 	
 	public Object[] toArray(){

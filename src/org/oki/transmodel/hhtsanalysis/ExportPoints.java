@@ -165,8 +165,8 @@ public class ExportPoints {
 				for(GPSData g:GPS){
 					IFeature feat=featClass.createFeature();
 					Point p=new Point();
-					p.setX(g.X);
-					p.setY(g.Y);
+					p.setX(g.smoothX); //FIXME: This should not be the smoothed points
+					p.setY(g.smoothY);
 					feat.setShapeByRef(p);
 
 					for(java.lang.reflect.Field fld:g.getClass().getDeclaredFields()){
@@ -206,15 +206,6 @@ public class ExportPoints {
 		} catch (UnsupportedObjectException e) {
 			System.out.println("ERROR: The object you are reading is not supported by this program.");
 		}
-		
-		/*
-		 * FileOutputStream fout=new FileOutputStream(workfolder+"\\"+newGPSList.get(0).hhId+"_"+newGPSList.get(0).personId+".obj");
-					ObjectOutputStream oos=new ObjectOutputStream(fout);
-					oos.writeObject(newGPSList);
-					oos.close();
-					GPS.clear();
-					newGPSList.clear();
-		 */
 	}
 
 	static void initializeArcGISLicenses() {
